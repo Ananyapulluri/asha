@@ -21,3 +21,23 @@ EXPOSE 3000
 
 # Start the app
 CMD ["npm", "start"]
+# Start from a base image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of your project files
+COPY . .
+
+# Expose port (optional, depending on your app)
+EXPOSE 3000
+
+# Command to run your app
+CMD ["npm", "start"]
