@@ -1,43 +1,21 @@
-# Use an official Node.js image
-FROM node:20
-
-# Set the working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy all project files
-COPY . .
-
-# Build the Next.js project
-RUN npm run build
-
-# Expose the port (Next.js default port)
-EXPOSE 3000
-
-# Start the app
-CMD ["npm", "start"]
-# Start from a base image
+# Step 1: Use Node.js official image
 FROM node:18
 
-# Set working directory
+# Step 2: Create a working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Step 3: Copy only package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies
+# Step 4: Install the npm dependencies
 RUN npm install
 
-# Copy the rest of your project files
+# Step 5: Copy the rest of your project files
 COPY . .
 
-# Expose port (optional, depending on your app)
+# Step 6: (Optional) Expose the port your app runs on (like 3000)
 EXPOSE 3000
 
-# Command to run your app
+# Step 7: Run your app
 CMD ["npm", "start"]
+
